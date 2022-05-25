@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private float _speed = 25;
-    [SerializeField] private float _jumpForce = 225;
+    [SerializeField] private float _jumpForce = 237;
     [SerializeField] private int _health = 100;
 
     private bool _isDie = false;
@@ -14,9 +14,16 @@ public class Player : MonoBehaviour
     public float JumpForce => _jumpForce;
     public int Health => _health;
 
-    private void OnTriggerStay2D(Collider2D collider) 
+    private void OnTriggerEnter2D(Collider2D collision) 
     {
-        if(collider.gameObject.TryGetComponent<Cleaner>(out Cleaner cleaner))
-            _isDie = true;
+        if(collision.gameObject.TryGetComponent<Cleaner>(out Cleaner cleaner) || collision.gameObject.TryGetComponent<DamageBox>(out DamageBox damageBox) || collision.gameObject.GetComponent<Bullet>())
+            Dying();
+
+    }
+
+    public void Dying()
+    {
+        _isDie = true;
+        Debug.Log("Главный герой умер");
     }
 }

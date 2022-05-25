@@ -6,8 +6,8 @@ public class PlatformMovement : MonoBehaviour
 {
     [SerializeField] private float _speed = 5f;
     private int _direction;
-    private int _minPosition = -11;
-    private int _maxPosition = 11;
+    private int _minPosition = -9;
+    private int _maxPosition = 9;
 
     private void Start() 
     {
@@ -27,10 +27,5 @@ public class PlatformMovement : MonoBehaviour
         {
             _direction *= -1;
         }
-    }
-
-    private void Teleport(int targetPosition)
-    {
-        transform.position = new Vector3(targetPosition, transform.position.y, transform.position.z);
     }
 }

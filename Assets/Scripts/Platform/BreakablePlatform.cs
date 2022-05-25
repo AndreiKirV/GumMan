@@ -21,7 +21,7 @@ public class BreakablePlatform : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collider) 
     {
-        if(collider.gameObject.TryGetComponent<Player>(out Player player))
+        if(collider.gameObject.TryGetComponent<DamageBox>(out DamageBox damageBox))
         {
             _collisionRate --;
         }

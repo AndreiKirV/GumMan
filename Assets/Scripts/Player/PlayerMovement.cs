@@ -27,15 +27,13 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         MoveXOnGround();
-        Jump();
     }
 
     private void Jump()
     {
         if (_isPlatform)
         {
-            transform.localScale -= new Vector3(0,_targetScaleValue,0);
-            _rigidbody.AddForce(Vector2.up * _player.JumpForce, ForceMode2D.Impulse);
+            _rigidbody.velocity = Vector2.up * _player.JumpForce;
             _isPlatform = false;
             StartCoroutine(ReScale());
         }
@@ -68,8 +66,9 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator ReScale ()
     {
+        transform.localScale -= new Vector3(0,_targetScaleValue,0);
         yield return new WaitForSeconds(0.2f);
-        transform.localScale += new Vector3(0,_targetScaleValue,0);;
+        transform.localScale += new Vector3(0,_targetScaleValue,0);
     }
 
     private void Teleport(int targetPosition)
@@ -91,8 +90,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collider) 
     {
-        if(collider.gameObject.TryGetComponent<Platform>(out Platform platform))
-        _isPlatform = true;
+        if(collider.gameObject.TryGetComponent<Platform>(out Platform platform) || collider.gameObject.TryGetComponent<Enemy>(out Enemy enemy))
+        {
+            _isPlatform = true;
+            Jump();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collider) 
