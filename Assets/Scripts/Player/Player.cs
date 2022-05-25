@@ -6,13 +6,10 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float _speed = 25;
     [SerializeField] private float _jumpForce = 237;
-    [SerializeField] private int _health = 100;
-
-    private bool _isDie = false;
+    [SerializeField] private GameObject _menu;
 
     public float Speed => _speed;
     public float JumpForce => _jumpForce;
-    public int Health => _health;
 
     private void OnTriggerEnter2D(Collider2D collision) 
     {
@@ -23,7 +20,7 @@ public class Player : MonoBehaviour
 
     public void Dying()
     {
-        _isDie = true;
-        Debug.Log("Главный герой умер");
+        _menu.SetActive(true);
+        Time.timeScale = 0;
     }
 }

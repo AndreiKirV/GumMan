@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private int _minPosition = -11;
     [SerializeField] private int _maxPosition = 11;
     [SerializeField] private float _targetScaleValue = 0.5f;
+    [SerializeField] private AudioSource _contact;
 
     private bool _isPlatform = false;
     private bool _isFacingRight = true;
@@ -94,6 +95,7 @@ public class PlayerMovement : MonoBehaviour
         {
             _isPlatform = true;
             Jump();
+            _contact.Play();
         }
     }
 
