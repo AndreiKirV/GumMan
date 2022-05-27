@@ -11,10 +11,10 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private GameObject _damageBox;
     
     private float _speed;
-    private bool _isFacingRight = true;
     private int _direction;
+    private int _gravityAfterDeath = 5;
+    private bool _isFacingRight = true;
     private bool _isDying = false;
-    private int _gravityAfterDeath =5;
 
     private void Start() 
     {

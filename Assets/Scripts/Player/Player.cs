@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision) 
     {
-        if(collision.gameObject.TryGetComponent<Cleaner>(out Cleaner cleaner) || collision.gameObject.TryGetComponent<DamageBox>(out DamageBox damageBox) || collision.gameObject.GetComponent<Bullet>())
+        if(collision.gameObject.TryGetComponent<PlayerKiller>(out PlayerKiller playerKiller))
             Dying();
 
     }

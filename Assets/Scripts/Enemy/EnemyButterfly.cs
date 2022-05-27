@@ -11,6 +11,7 @@ public class EnemyButterfly : MonoBehaviour
     private Player _player;
     private float _speed;
     private bool _isLive = true;
+    private int _gravityAfterDeath = 5;
     
     private void Start() 
     {
@@ -29,7 +30,7 @@ public class EnemyButterfly : MonoBehaviour
         {
             _damageBox.SetActive(false);
             _isLive = false;
-            gameObject.transform.GetComponent<Rigidbody2D>().gravityScale = 5;
+            gameObject.transform.GetComponent<Rigidbody2D>().gravityScale = _gravityAfterDeath;
         }
     }
 

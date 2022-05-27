@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Enemy))]
 public class Shooter : MonoBehaviour
 {
     [SerializeField] protected Bullet Bullet;
@@ -19,7 +20,9 @@ public class Shooter : MonoBehaviour
     {
         if (_isShoot == false)
         {
-            Instantiate(Bullet, _shootPoint.position, Quaternion.identity);
+
+            Bullet bullet = Instantiate(Bullet, _shootPoint.position, Quaternion.identity);
+            bullet.SetTarget(GetComponent<Enemy>().Target);
             _isShoot = true;
             StartCoroutine(DelayShoot(_delay));
         } 

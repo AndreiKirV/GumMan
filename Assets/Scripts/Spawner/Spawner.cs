@@ -14,7 +14,7 @@ public class Spawner : MonoBehaviour
     private int _minPositionX = -9;
     private int _maxPositionX = 10;
     private Transform _tempTransform;
-
+    
     public Player Target => _player;
 
     private void FixedUpdate() 
@@ -51,7 +51,9 @@ public class Spawner : MonoBehaviour
         _tempTransform = transform;
         _tempTransform.position = new Vector3(Random.Range(_minPositionX, _maxPositionX), transform.position.y, transform.position.z);
         
-        Instantiate(_enemies[Random.Range(0, _enemies.Count)], _tempTransform.position, transform.rotation);
-            _isSpawned = false;
+        Enemy enemy = Instantiate(_enemies[Random.Range(0, _enemies.Count)], _tempTransform.position, transform.rotation);
+        enemy.SetTarget(_player);
+        _isSpawned = false;
+
     }
 }

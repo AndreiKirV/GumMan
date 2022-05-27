@@ -2,20 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class BreakablePlatform : MonoBehaviour
 {
     [SerializeField] private int _collisionRate;
     [SerializeField] Sprite _damagedSprite;
+    
+    private int _gravityAfterDeath = 5;
 
-    private void Update() 
+    private void TryDestroy ()
     {
-        if (_collisionRate <= 0)
-        gameObject.transform.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-        gameObject.transform.GetComponent<Rigidbody2D>().gravityScale = 5;
-
-        if (_collisionRate <= 1)
-        {
+        if (_collisionRate > 1)
             gameObject.transform.GetComponent<SpriteRenderer>().sprite = _damagedSprite;
+        else
+        {
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            GetComponent<Rigidbody2D>().gravityScale = _gravityAfterDeath;
         }
     }
 
@@ -23,6 +26,7 @@ public class BreakablePlatform : MonoBehaviour
     {
         if(collider.gameObject.TryGetComponent<DamageBox>(out DamageBox damageBox))
         {
+            TryDestroy();
             _collisionRate --;
         }
     }

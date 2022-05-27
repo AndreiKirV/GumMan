@@ -11,6 +11,12 @@ public class BackGround : MonoBehaviour
     private int _direction = -1;
     private int _minPosition = -20;
     private int _maxPosition = 20;
+    private int _stepPosition;
+
+    private void Start() 
+    {
+        _stepPosition = _delayDistance*2;
+    }
 
     private void Update() 
     {
@@ -23,7 +29,7 @@ public class BackGround : MonoBehaviour
 
         if (_player.transform.position.y >= transform.position.y + _delayDistance)
         {
-            transform.position = new Vector3(0, transform.position.y + _delayDistance*2, 0);
+            transform.position = new Vector3(0, transform.position.y + _stepPosition, 0);
         }
     }
 }

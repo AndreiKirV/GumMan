@@ -9,9 +9,13 @@ public class Bullet : MonoBehaviour
     private float _delayDelete = 5;
     private Vector3 _target;
 
+    public void SetTarget(Player target) 
+    {
+        _target = target.transform.position;
+    }
+
     private void Start()
     {
-        _target = GameObject.Find("Player").transform.position;
         StartCoroutine(destroyAfterDelay(_delayDelete));
     }
 
