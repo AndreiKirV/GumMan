@@ -11,11 +11,11 @@ public class Spawner : MonoBehaviour
 
     private bool _isSpawned = false;
     private int _targetPositionY = 30;
-
     private int _minPositionX = -9;
     private int _maxPositionX = 10;
-
     private Transform _tempTransform;
+
+    public Player Target => _player;
 
     private void FixedUpdate() 
     {

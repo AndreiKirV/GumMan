@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bf8b845a9aa044b9afecc64f67bc41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _speed: 5
 --- !u!95 &7752013944314145356
 Animator:
   serializedVersion: 3
@@ -132,9 +133,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf15b7f253242434baec02fdfbcde05b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
   _minPosition: -10
   _maxPosition: 10
+  _damageBox: {fileID: 7752013943751420855}
 --- !u!50 &7752013944314145351
 Rigidbody2D:
   serializedVersion: 4
@@ -239,6 +240,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9b1142c28939584999ecf9a45579104, type: 3}
+--- !u!1 &7752013943751420855 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4270161635713826617, guid: c9b1142c28939584999ecf9a45579104, type: 3}
+  m_PrefabInstance: {fileID: 5824850856127009934}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7752013943751420854 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4270161635713826616, guid: c9b1142c28939584999ecf9a45579104, type: 3}

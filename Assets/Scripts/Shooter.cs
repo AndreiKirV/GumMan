@@ -10,11 +10,6 @@ public class Shooter : MonoBehaviour
 
     private bool _isShoot = false;
 
-    private void Start() 
-    {
-        _shootPoint = transform.Find("ShootPoint");
-    }
-
     private void Update() 
     {
         TryShoot();
@@ -27,8 +22,7 @@ public class Shooter : MonoBehaviour
             Instantiate(Bullet, _shootPoint.position, Quaternion.identity);
             _isShoot = true;
             StartCoroutine(DelayShoot(_delay));
-        }
-        
+        } 
     }
 
     private IEnumerator DelayShoot (float delay) 

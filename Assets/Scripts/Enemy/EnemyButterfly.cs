@@ -2,15 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Enemy))]
 public class EnemyButterfly : MonoBehaviour
 {
-    private GameObject _player;
+    [SerializeField] private GameObject _damageBox;
+
+    private Player _player;
     private float _speed;
     private bool _isLive = true;
+    
     private void Start() 
     {
         _speed = GetComponent<Enemy>().Speed;
-        _player = GameObject.Find("Player");
+        _player = GetComponent<Enemy>().Target;
     }
 
     private void Update() 
@@ -22,7 +27,7 @@ public class EnemyButterfly : MonoBehaviour
     {
         if(collider.gameObject.TryGetComponent<DamageBox>(out DamageBox damageBox))
         {
-            transform.Find("DamageBox").gameObject.SetActive(false);
+            _damageBox.SetActive(false);
             _isLive = false;
             gameObject.transform.GetComponent<Rigidbody2D>().gravityScale = 5;
         }

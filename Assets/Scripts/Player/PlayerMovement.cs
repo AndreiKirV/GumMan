@@ -64,14 +64,7 @@ public class PlayerMovement : MonoBehaviour
             Teleport(_maxPosition);
         }
     }
-
-    private IEnumerator ReScale ()
-    {
-        transform.localScale -= new Vector3(0,_targetScaleValue,0);
-        yield return new WaitForSeconds(0.2f);
-        transform.localScale += new Vector3(0,_targetScaleValue,0);
-    }
-
+    
     private void Teleport(int targetPosition)
     {
         transform.position = new Vector3(targetPosition, transform.position.y, transform.position.z);
@@ -87,6 +80,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!_isFacingRight)
         Flip();
+    }
+
+    private void Flip()
+    {
+        _isFacingRight = !_isFacingRight;
+        Vector3 scaler = transform.localScale;
+        scaler.x *= -1;
+        transform.localScale = scaler;
     }
 
     private void OnTriggerStay2D(Collider2D collider) 
@@ -105,11 +106,10 @@ public class PlayerMovement : MonoBehaviour
         _isPlatform = false;
     }
 
-    private void Flip()
+    private IEnumerator ReScale ()
     {
-        _isFacingRight = !_isFacingRight;
-        Vector3 scaler = transform.localScale;
-        scaler.x *= -1;
-        transform.localScale = scaler;
+        transform.localScale -= new Vector3(0,_targetScaleValue,0);
+        yield return new WaitForSeconds(0.2f);
+        transform.localScale += new Vector3(0,_targetScaleValue,0);
     }
 }

@@ -6,7 +6,7 @@ public class TriggerSpawnerEnemy : MonoBehaviour
 {
     [SerializeField] private Transform _spawner;
     
-    void Update()
+    private void Update()
     {
         if (_spawner.transform.position.y >= transform.position.y)
         {

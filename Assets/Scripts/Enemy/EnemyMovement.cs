@@ -2,15 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Enemy))]
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private int _minPosition = -10;
     [SerializeField] private int _maxPosition = 10;
+    [SerializeField] private GameObject _damageBox;
     
     private float _speed;
     private bool _isFacingRight = true;
     private int _direction;
     private bool _isDying = false;
+    private int _gravityAfterDeath =5;
 
     private void Start() 
     {
@@ -47,10 +51,8 @@ public class EnemyMovement : MonoBehaviour
     {
         if(collider.gameObject.TryGetComponent<DamageBox>(out DamageBox damageBox))
         {
-            if (GetComponent<DamageBox>())
-            transform.Find("DamageBox").gameObject.SetActive(false);
-
-            gameObject.transform.GetComponent<Rigidbody2D>().gravityScale = 5;
+            _damageBox.SetActive(false);
+            gameObject.transform.GetComponent<Rigidbody2D>().gravityScale = _gravityAfterDeath;
         }
     }
 }
