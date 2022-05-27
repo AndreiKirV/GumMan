@@ -15,8 +15,9 @@ public class EnemyButterfly : MonoBehaviour
     
     private void Start() 
     {
-        _speed = GetComponent<Enemy>().Speed;
-        _player = GetComponent<Enemy>().Target;
+        Enemy tempEnemy = GetComponent<Enemy>();
+        _speed = tempEnemy.Speed;
+        _player = tempEnemy.Target;
     }
 
     private void Update() 

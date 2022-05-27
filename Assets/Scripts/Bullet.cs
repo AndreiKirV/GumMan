@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(destroyAfterDelay(_delayDelete));
+       Destroy(gameObject, _delayDelete);
     }
 
     private void Update() 
@@ -30,11 +30,5 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    private IEnumerator destroyAfterDelay (float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        Destroy(gameObject);
     }
 }

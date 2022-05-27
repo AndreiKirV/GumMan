@@ -7,9 +7,15 @@ using UnityEngine;
 public class BreakablePlatform : MonoBehaviour
 {
     [SerializeField] private int _collisionRate;
-    [SerializeField] Sprite _damagedSprite;
-    
+    [SerializeField] private Sprite _damagedSprite;
+
+    private Rigidbody2D _rigidbody;
     private int _gravityAfterDeath = 5;
+
+    private void Start()
+    {
+        _rigidbody = GetComponent<Rigidbody2D>();
+    }
 
     private void TryDestroy ()
     {
@@ -17,8 +23,8 @@ public class BreakablePlatform : MonoBehaviour
             gameObject.transform.GetComponent<SpriteRenderer>().sprite = _damagedSprite;
         else
         {
-            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-            GetComponent<Rigidbody2D>().gravityScale = _gravityAfterDeath;
+            _rigidbody.bodyType = RigidbodyType2D.Dynamic;
+            _rigidbody.gravityScale = _gravityAfterDeath;
         }
     }
 

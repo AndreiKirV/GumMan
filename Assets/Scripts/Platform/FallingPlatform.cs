@@ -6,13 +6,19 @@ using UnityEngine;
 public class FallingPlatform : MonoBehaviour
 {
     private int _gravityAfterDeath = 5;
+    private Rigidbody2D _rigidbody;
+
+    private void Start() 
+    {
+        _rigidbody = GetComponent<Rigidbody2D>();
+    }
 
     private void OnTriggerStay2D(Collider2D collider) 
     {
         if(collider.gameObject.TryGetComponent<DamageBox>(out DamageBox damageBox))
         {
-            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-            GetComponent<Rigidbody2D>().gravityScale = _gravityAfterDeath;
+            _rigidbody.bodyType = RigidbodyType2D.Dynamic;
+            _rigidbody.gravityScale = _gravityAfterDeath;
         }
     }
 }
